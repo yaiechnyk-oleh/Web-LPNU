@@ -1,0 +1,42 @@
+.addQueueContainer{
+    height: 80%;
+    width: 40%;
+    border-radius: 12px;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 20px 0;
+}
+
+.addQueueTitle{
+    text-align: center;
+    color: #1D638E;
+}
+
+.addForm{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.addInput{
+    height: 10%;
+    width: 80%;
+    border: 2px solid #00416A;
+    border-radius: 5px;
+    background-color: #C3D7DE;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+
+.addButton{
+    height: 40px;
+    width: 250px;
+    color: #FFFFFF;
+    font-size: 20px;
+    background-color: #1D638E;
+    border: 1px solid #00416A;
+    border-radius: 8px;
+}

@@ -1,0 +1,20 @@
+.userContainer{
+    height: 15%;
+    width: 40%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #FFFFFF;
+    font-size: 20px;
+    background-color: #36779E;
+}
+
+.swapImage{
+    height: 30px;
+    width: 30px;
+    background-image: url("../images/swap.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
