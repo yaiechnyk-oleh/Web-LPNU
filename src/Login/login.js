@@ -14,8 +14,8 @@ export async function refreshToken() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${refreshToken}`
             },
-            body: JSON.stringify({ refresh_token: refreshToken }),
         });
 
         if (!response.ok) {
@@ -73,11 +73,10 @@ export async function login(email, password) {
 
         const data = await response.json();
         localStorage.setItem('refresh_token', data.refresh_token);
+        console.log(data.refresh_token)
         const token = data.access_token;
         localStorage.setItem('access_token', token)
         const parsed_token = parseJwt(token);
-        // Save the token in localStorage
-        console.log(token)
         localStorage.setItem('user_role', parsed_token.roles[0]);
         localStorage.setItem('user_id', parsed_token.sub);
 
