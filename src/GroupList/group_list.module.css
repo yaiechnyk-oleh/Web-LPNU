@@ -1,0 +1,15 @@
+.groupContainer {
+    /*height: 15%;*/
+    /*width: 40%;*/
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #FFFFFF;
+    font-size: 40px;
+    background-color: #36779E;
+    /*margin-top: 3%;*/
+    /*border: #00416A;*/
+    margin: 20px 30px;
+
+}
