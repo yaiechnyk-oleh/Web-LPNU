@@ -1,0 +1,35 @@
+.queueWrapper{
+    height: 670px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: inline-block;
+    justify-content: center;
+
+}
+
+.addGroup{
+    border-radius: 10px;
+    color: #00416A;
+    background-color: white;
+    font-size: 20px;
+    margin-top: 3%;
+    align-items: center;
+}
+
+.studentsList{
+    background-color: #1D638E;
+    margin-top: 2%;
+    width: 65%;
+    border-radius: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-bottom: 25px;
+    overflow: auto;
+    margin-left: 18%;
+    padding-top: 20px;
+}
+

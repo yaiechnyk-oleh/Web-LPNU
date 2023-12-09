@@ -7,6 +7,8 @@ import Home from "./Home/home";
 import AddQueue from "./AddQueue/AddQueue";
 import Queue from "./Queue/queue";
 import {useEffect, useState} from "react";
+import Group from "./Group/group";
+import Groups from "./Groups/groups";
 
 
 function App() {
@@ -17,6 +19,9 @@ function App() {
         setLoggedIn(isLoggedIn());
     }, [])
 
+
+
+
   return (
    <Router>
     <div className = {"globalWrapper"}>
@@ -25,6 +30,8 @@ function App() {
         <Route path="/login" element = {<Login />} />
         <Route path="/dashboard" element={<Home />} />
         <Route path= "/queue" element= {<Queue/>}/>
+        <Route path= "/group" element= {<Group/>}/>
+        <Route path= "/groups" element= {<Groups/>}/>
       {/*<AddQueue></AddQueue>*/}
      </Routes>
     </div>
