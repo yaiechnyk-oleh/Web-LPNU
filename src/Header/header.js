@@ -26,7 +26,7 @@ function Header({isLoggedIn}){
     const navigate = useNavigate();
     function logOut(){
         localStorage.clear();
-        userName = "name"
+        userName = ""
         navigate('/login')
     }
     let userName = "Prof. Jones"
