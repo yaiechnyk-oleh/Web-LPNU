@@ -1,7 +1,37 @@
 import styles from './queue.module.css'
 import User from "../User/user";
 import QueueSuggestion from "../QueueSuggestion/queueSuggestion";
+import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {securedFetch} from "../Login/login";
 function Queue() {
+    let {queueId} = useParams();
+    const [queueDetails, setQueueDetails] = useState([])
+
+    useEffect(() => {
+        async function fetchQueueDetails() {
+            const response = await securedFetch(`http://localhost:5000/queues/${queueId}`, {
+                headers: {},
+            })
+
+            if (response.ok) {
+                const data = await response.json();
+                setQueueDetails({
+                    id: data.id,
+                    name: data.subject_name,
+                    teacher: data.teacher_id,
+                    group: data.group_id,
+                    start_time: data.start_time,
+                    end_time: data.end_time,
+                });
+            } else {
+                console.error("Failed to fetch queue details");
+            }
+        }
+
+        fetchQueueDetails()
+
+    }, [queueId])
 
     const userRole = "teacher";
 
@@ -32,10 +62,10 @@ function Queue() {
                 </div> : (
                     <div className = {styles.queueInfoSettings}>
                         <p>Settings</p>
-                        <div className = {styles.infoTemplate}>Subject name: Infromation theory</div>
-                        <div className = {styles.infoTemplate}>Time: 10:30-11:50</div>
+                        <div className = {styles.infoTemplate}>Subject name: {queueDetails.name}</div>
+                        <div className = {styles.infoTemplate}>Time: {queueDetails.start_time}-{queueDetails.end_time}</div>
                         <div className = {styles.infoTemplate}>Location: 125 I a.b.</div>
-                        <div className = {styles.infoTemplate}> Group: SHI-24</div>
+                        <div className = {styles.infoTemplate}>Group: {queueDetails.group}</div>
                     </div>
                 )}
                 <div className = {styles.queueDescription}>

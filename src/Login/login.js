@@ -6,9 +6,60 @@ import {useNavigate} from "react-router-dom";
 export function isLoggedIn() {
     return !!localStorage.getItem('refresh_token')
 }
+
+export async function refreshToken() {
+    try {
+        const refreshToken = localStorage.getItem('refresh_token');
+        const response = await fetch('http://localhost:5000/auth/refresh', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ refresh_token: refreshToken }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Token refresh failed: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        localStorage.setItem('access_token', data.access_token);
+        return data.access_token;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export async function securedFetch(url, options) {
+    let response = await fetch(url, {
+        ...options,
+        headers: {
+            ...options.headers,
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        },
+    });
+
+    if (response.status === 401) {
+        const newToken = await refreshToken();
+        if (newToken) {
+            // Retry the fetch with the new token
+            response = await fetch(url, {
+                ...options,
+                headers: {
+                    ...options.headers,
+                    'Authorization': `Bearer ${newToken}`
+                },
+            });
+        }
+    }
+
+    return response;
+}
+
 export async function login(email, password) {
     try {
-        const response = await fetch('http://127.0.0.1:5000/auth/login', {
+        const response = await securedFetch('http://localhost:5000/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,17 +74,16 @@ export async function login(email, password) {
         const data = await response.json();
         localStorage.setItem('refresh_token', data.refresh_token);
         const token = data.access_token;
+        localStorage.setItem('access_token', token)
         const parsed_token = parseJwt(token);
         // Save the token in localStorage
-        console.log(parsed_token)
+        console.log(token)
         localStorage.setItem('user_role', parsed_token.roles[0]);
         localStorage.setItem('user_id', parsed_token.sub);
 
-        console.log('123')
         return true;
     } catch (error) {
         console.error(error)
-
 
         return false;
     }
@@ -72,7 +122,7 @@ function Login(){
             navigate("/dashboard");
         } else {
             // messages.current.show({severity: 'error', summary: 'Login failed: Check your credentials'});
-            console.log('erorr')
+            console.log('error')
         }
     }
 
@@ -84,9 +134,9 @@ function Login(){
                      <span className = {styles.loginSubTitle}>Sign in to enjoy all the services!</span>
                 </div>
             <form onSubmit={handleSubmit} className = {styles.loginForm}>
-                <input onChange={handleInputChange} type="text" name="email" placeholder="Enter your email" className={styles.loginInput}/>
+                <input onChange={handleInputChange} name="email" placeholder="Enter your email" className={styles.loginInput}/>
                 <input onChange={handleInputChange} type="password" name="password" placeholder="Enter your password" className={`${styles.loginInput} ${styles.loginPassword}`}/>
-                <button className = {styles.formButton}>Sign in</button>
+                <button type="submit" className = {styles.formButton}>Sign in</button>
             </form>
             </div>
         </div>
