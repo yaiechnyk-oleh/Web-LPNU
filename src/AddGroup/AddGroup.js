@@ -25,10 +25,6 @@ function AddGroup (){
                             <label htmlFor="gname">Group name:</label>
                             <input type="text" id="gname" name="gname"/>
                         </div>
-                        {/*<div className={styles.inputContainer}>*/}
-                        {/*    <label htmlFor="sname">Subject name:</label>*/}
-                        {/*    <input type="text" id="sname" name="sname"/>*/}
-                        {/*</div>*/}
                        </div>
                         {/*<label style={{marginBottom: '10px'}} htmlFor="ugroup">Upload a group:</label>*/}
                         {/*<div {...getRootProps()} className = {styles.dropZone}>*/}

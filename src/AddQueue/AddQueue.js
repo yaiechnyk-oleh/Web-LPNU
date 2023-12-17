@@ -6,9 +6,6 @@ function AddQueue () {
                 <div className={styles.titleContainer}>
                 <h1 className = {styles.titleText}>Create Queue</h1>
                 </div>
-                <select name={'Select a group'} className = {styles.groupSelect}>
-                    <option className={styles.selectLabel} value="" disabled selected>Select a group</option>
-                </select>
                 <div className={styles.queueFormContainer}>
                     <h3 className={styles.queueFormLabel}>Create a new queue</h3>
                     <form className={styles.queueForm}>
@@ -20,13 +17,13 @@ function AddQueue () {
                             <label htmlFor="place">Place:</label>
                             <input type="text" id="place" name="place"/>
                         </div>
-                        <div className={`${styles.inputContainer} ${styles.fix}`}>
-                            <label>Every week</label>
-                            <label className={styles.switch}>
-                                <input type="checkbox"/>
-                                    <span className={`${styles.slider} ${styles.round}`}></span>
-                            </label>
-                        </div>
+                        {/*<div className={`${styles.inputContainer} ${styles.fix}`}>*/}
+                        {/*    <label>Every week</label>*/}
+                        {/*    <label className={styles.switch}>*/}
+                        {/*        <input type="checkbox"/>*/}
+                        {/*            <span className={`${styles.slider} ${styles.round}`}></span>*/}
+                        {/*    </label>*/}
+                        {/*</div>*/}
                         <div className={`${styles.inputContainer} ${styles.test}`}>
                             <label htmlFor="time">Time:</label>
                             <select id="time">
