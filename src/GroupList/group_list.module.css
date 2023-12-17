@@ -10,8 +10,17 @@
     font-size: 20px;
     background-color: #1D648F;
     margin-top: 10px;
-    cursor: pointer;
 
+}
+
+
+.text{
+    width: 70%;
+    cursor: pointer;
+    border: none;
+    background-color: #1D648F;
+    font-size: 20px;
+    color: white;
 }
 
 .binImage{
@@ -22,5 +31,10 @@
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
+    border: none;
+    background-color: #1D648F;
+    font-size: 20px;
+    color: white;
+
 
 }

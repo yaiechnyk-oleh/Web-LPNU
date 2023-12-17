@@ -60,5 +60,7 @@
     background-position: center;
     background-image: url("../images/bin.svg");
     cursor: pointer;
+    border: none;
+    background-color: #36779E;
 
 }

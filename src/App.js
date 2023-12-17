@@ -33,7 +33,7 @@ function App() {
         <Route path="/add-queue" element={<AddQueue/>}/>
         <Route path="/add-group" element={<AddGroup/>}/>
         <Route path="/add-student" element={<AddStudent/>}/>
-        <Route path= "/group" element= {<Group/>}/>
+        <Route path= "/groups" element= {<Group/>}/>
       {/*<AddQueue></AddQueue>*/}
      </Routes>
     </div>
