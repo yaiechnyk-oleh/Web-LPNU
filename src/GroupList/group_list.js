@@ -5,6 +5,7 @@ function GroupList(props){
     return(
         <button className = {styles.groupContainer}>
             <p>{props.name}</p>
+            <div className = {styles.binImage}></div>
         </button>
 
     )

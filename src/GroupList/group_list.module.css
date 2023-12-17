@@ -1,15 +1,26 @@
 .groupContainer {
-    /*height: 15%;*/
-    /*width: 40%;*/
+    height: 8%;
+    width: 80%;
     border-radius: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    box-sizing: border-box;
     color: #FFFFFF;
-    font-size: 40px;
-    background-color: #36779E;
-    /*margin-top: 3%;*/
-    /*border: #00416A;*/
-    margin: 20px 30px;
+    font-size: 20px;
+    background-color: #1D648F;
+    margin-top: 10px;
+    cursor: pointer;
+
+}
+
+.binImage{
+    height: 30px;
+    width: 30px;
+    background-image: url("../images/bin.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
 
 }
