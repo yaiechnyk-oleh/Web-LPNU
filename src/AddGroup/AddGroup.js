@@ -1,44 +1,46 @@
-import styles from './AddGroup.module.css'
-import {useCallback} from "react";
-import { useDropzone } from 'react-dropzone';
+// add-group.js
 
-function AddGroup (){
+import React, { useState } from 'react';
+import styles from './AddGroup.module.css';
 
-    const onDrop = useCallback(acceptedFiles => {
-        // Do something with the files
-        console.log(acceptedFiles);
-    }, []);
+function AddGroup({ onGroupAdded, onClose }) {
+    const [groupName, setGroupName] = useState('');
 
-    const { getRootProps, getInputProps  } = useDropzone({ onDrop });
+    const handleButton = () => {
+        onGroupAdded(groupName);
+        setGroupName(''); // Reset groupName state
+        onClose(); // Close the modal
+    };
 
-    return(
-        <div className = {"modalContainer"}>
-            {/*<div className={styles.modalPlaceholder}>*/}
-            {/*    <div className={styles.titleContainer}>*/}
-            {/*        <h1 className = {styles.titleText}>Create Group</h1>*/}
-            {/*    </div>*/}
-                <div className={styles.queueFormContainer}>
-                    <h3 className={styles.queueFormLabel}>Create a group</h3>
-                    <form className={styles.queueForm}>
-                       <div className = {styles.inputHandler}>
+    return (
+        <div className="modalContainer">
+            <div className={styles.queueFormContainer}>
+                <h3 className={styles.queueFormLabel}>Create a group</h3>
+                <form className={styles.queueForm}>
+                    <div className={styles.inputHandler}>
                         <div className={styles.inputContainer}>
                             <label htmlFor="gname">Group name:</label>
-                            <input type="text" id="gname" name="gname"/>
+                            <input
+                                type="text"
+                                id="gname"
+                                name="gname"
+                                value={groupName}
+                                onChange={(e) => setGroupName(e.target.value)}
+                            />
                         </div>
-                       </div>
-                        {/*<label style={{marginBottom: '10px'}} htmlFor="ugroup">Upload a group:</label>*/}
-                        {/*<div {...getRootProps()} className = {styles.dropZone}>*/}
-                        {/*    <input  id="ugroup" name="ugroup" {...getInputProps()} />*/}
-                        {/*</div>*/}
-                        <div className={styles.buttonGroup}>
-                            <button className={`${styles.btn} ${styles.continue}`}>Continue</button>
-                            <button className={`${styles.btn} ${styles.cancel}`}>Cancel</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div className={styles.buttonGroup}>
+                        <button className={`${styles.btn} ${styles.continue}`} onClick={handleButton}>
+                            Continue
+                        </button>
+                        <button className={`${styles.btn} ${styles.cancel}`} onClick={onClose}>
+                            Cancel
+                        </button>
+                    </div>
+                </form>
             </div>
-        // </div>
-    )
+        </div>
+    );
 }
 
-export default AddGroup
+export default AddGroup;

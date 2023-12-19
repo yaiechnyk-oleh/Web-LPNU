@@ -10,7 +10,6 @@ import AddStudent from "./AddStudent/AddStudent"
 import Queue from "./Queue/queue";
 import {useEffect, useState} from "react";
 import Group from "./Group/group";
-import Groups from "./Groups/groups";
 
 
 
@@ -34,8 +33,7 @@ function App() {
         <Route path="/add-queue" element={<AddQueue/>}/>
         <Route path="/add-group" element={<AddGroup/>}/>
         <Route path="/add-student" element={<AddStudent/>}/>
-        <Route path= "/group" element= {<Group/>}/>
-        <Route path= "/groups" element= {<Groups/>}/>
+        <Route path= "/groups" element= {<Group/>}/>
       {/*<AddQueue></AddQueue>*/}
      </Routes>
     </div>

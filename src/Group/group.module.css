@@ -3,96 +3,206 @@
     width: 100%;
     box-sizing: border-box;
     padding: 20px;
-    display: inline-block;
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
 
 }
 
+.noStudents{
+    font-size: 30px;
+    color: white;
 
-.title{
+}
+
+span{
+    color: white;
+    font-size: 30px;
     display: flex;
-    /*justify-content: center;*/
+    align-items: center;
+    justify-content: center;
+    margin-right: 8%;
 }
 
 .groupContainer{
-    position: relative;
-    justify-content: left;
-}
-
-.groupContainer>button{
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 20px;
-    background-color: transparent;
-    margin-top: 3%;
-    border: none;
-}
-
-.groupContainer>div{
-    position: absolute;
-    left: 100%;
-    background-color: #36779E;
-    padding: 10px;
-    z-index: 1;
-    width: 200%;
     display: flex;
     justify-content: center;
     flex-direction: column;
-
-    /*justify-content: space-around;*/
-}
-
-.groupList{
-    border-radius: 10px;
-    color: #1D638E;
-    font-size: 20px;
-    background-color: #ffffff;
-    margin-top: 3%;
-}
-
-
-
-.groupName{
-    display: flex;
-    /*justify-content: center;*/
-    /*text-align: center;*/
-    margin-left: 35%;
-    color: white;
-    font-size: 30px;
-}
-
-.studentsList{
-    background-color: #1D638E;
-    margin-top: 2%;
-    width: 65%;
-    border-radius: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
     box-sizing: border-box;
-    padding: 3px;
+    width: 30%;
+
+}
+
+.groupList {
+    background-color: #36779E;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
     overflow: auto;
-    margin-left: 18%;
-}
-
-.groupUsers{
-    margin-top: 0.5%;
-    /*border-radius: 16px;*/
-    padding: 1% 10%;
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-items: center;*/
+    margin-left: 8%;
+    margin-top: 10px;
+    box-sizing: border-box;
+    height: 90vh;
 
 
 }
 
-.groupUsers>div{
-    text-align: center;
-    margin-top: 5%;
-    width: 100%;
-    height: 100%;
-    padding: 1%;
-    font-size: 30px;
+
+.addGroup{
+    background-color: white;
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    color: #36779E;
+    cursor: pointer;
 
 }
+
+
+.studentContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 65%;
+    height: 80vh;
+
+}
+
+
+.studentList{
+    background-color: #1D648F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    overflow: auto;
+    margin-right: 8%;
+    margin-top: 10px;
+    box-sizing: border-box;
+    flex: 1;
+
+
+}
+
+.studentList>div{
+    height: 8%;
+    width: 90%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-evenly;*/
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-size: 20px;
+    background-color: #36779E;
+    margin-top: 10px;
+}
+
+
+.addStudent{
+    background-color: white;
+    font-size: 35px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    color: #36779E;
+    width: 230px;
+    cursor: pointer;
+    margin-left: 35%;
+
+}
+
+
+
+
+
+/*.title{*/
+/*    display: flex;*/
+/*}*/
+
+/*.groupContainer{*/
+/*    position: relative;*/
+/*    justify-content: left;*/
+/*}*/
+
+/*.groupContainer>button{*/
+/*    border-radius: 10px;*/
+/*    color: #ffffff;*/
+/*    font-size: 20px;*/
+/*    background-color: transparent;*/
+/*    margin-top: 3%;*/
+/*    border: none;*/
+/*}*/
+
+/*.groupContainer>div{*/
+/*    position: absolute;*/
+/*    left: 100%;*/
+/*    background-color: #36779E;*/
+/*    padding: 10px;*/
+/*    z-index: 1;*/
+/*    width: 200%;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    flex-direction: column;*/
+
+/*    !*justify-content: space-around;*!*/
+/*}*/
+
+/*.groupList{*/
+/*    border-radius: 10px;*/
+/*    color: #1D638E;*/
+/*    margin-top: 3%;*/
+/*}*/
+
+
+
+/*.groupName{*/
+/*    display: flex;*/
+/*    margin-left: 35%;*/
+/*    color: white;*/
+/*    font-size: 30px;*/
+/*}*/
+
+/*.studentsList{*/
+/*    background-color: #1D638E;*/
+/*    margin-top: 2%;*/
+/*    width: 65%;*/
+/*    border-radius: 16px;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    box-sizing: border-box;*/
+/*    padding: 3px;*/
+/*    overflow: auto;*/
+/*    margin-left: 18%;*/
+/*}*/
+
+/*.groupUsers{*/
+/*    margin-top: 0.5%;*/
+/*    !*border-radius: 16px;*!*/
+/*    padding: 1% 10%;*/
+/*    !*display: flex;*!*/
+/*    !*flex-direction: column;*!*/
+/*    !*align-items: center;*!*/
+
+
+/*}*/
+
+/*.groupUsers>div{*/
+/*    text-align: center;*/
+/*    margin-top: 5%;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    padding: 1%;*/
+/*    font-size: 30px;*/
+
+/*}*/

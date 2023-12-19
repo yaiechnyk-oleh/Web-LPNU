@@ -1,13 +1,15 @@
-import styles from './group_list.module.css'
+// group_list.js
 
-function GroupList(props){
-    console.log(props.group_name)
-    return(
-        <button className = {styles.groupContainer}>
-            <p>{props.name}</p>
-        </button>
+import React from 'react';
+import styles from './group_list.module.css';
 
-    )
+function GroupList({ name, onClick, onDeleteGroup }) {
+    return (
+        <div className={styles.groupContainer} onClick={onClick}>
+            <button className={styles.text}>{name}</button>
+            <button className={styles.binImage} onClick={onDeleteGroup}></button>
+        </div>
+    );
 }
 
-export default GroupList
+export default GroupList;
