@@ -1,0 +1,40 @@
+.groupContainer {
+    height: 8%;
+    width: 80%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-size: 20px;
+    background-color: #1D648F;
+    margin-top: 10px;
+
+}
+
+
+.text{
+    width: 70%;
+    cursor: pointer;
+    border: none;
+    background-color: #1D648F;
+    font-size: 20px;
+    color: white;
+}
+
+.binImage{
+    height: 30px;
+    width: 30px;
+    background-image: url("../images/bin.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border: none;
+    background-color: #1D648F;
+    font-size: 20px;
+    color: white;
+
+
+}

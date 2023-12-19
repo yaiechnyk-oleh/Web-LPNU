@@ -55,26 +55,30 @@
     border-radius: 6px;
 }
 
-.queueUsersContainer{
-    height: 100%;
+.queueUsersContainer {
+    min-height: 250px;
     width: 73%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
 }
 
-.queueUsers{
-    height: 90%;
+.queueUsers {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(120px, 1fr)); /* Creates a flexible number of columns */
+    grid-auto-rows: minmax(50px, auto); /* Sets a minimum and maximum for row height */
+    gap: 10px; /* Space between grid items */
+    align-content: start; /* Aligns grid content to the start, helping with wrapping */
     width: 100%;
     border-radius: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    box-sizing: border-box;
     padding: 20px;
     background-color: #1D638E;
+    box-sizing: border-box;
 }
+
+/* Additional CSS rules for other elements */
+
 
 .joinButton{
     margin-top: 7px;
@@ -85,3 +89,4 @@
     border: none;
     width: 35%;
 }
+

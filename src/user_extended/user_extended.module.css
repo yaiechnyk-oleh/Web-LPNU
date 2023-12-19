@@ -1,0 +1,66 @@
+.userContainer{
+    height: 15%;
+    width: 40%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #FFFFFF;
+    font-size: 20px;
+    background-color: #36779E;
+}
+
+.name{
+    margin-left: 30px;
+    width: 25%;
+}
+
+.email{
+    margin-left: 30px;
+    width: 35%;
+}
+
+
+.emailImage{
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../images/email_true.svg");
+    margin-left: 30px;
+
+}
+
+.registredImage{
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../images/registred_true.svg");
+
+}
+.resendImage{
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../images/resend.svg");
+    cursor: pointer;
+
+}
+
+.binImage{
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../images/bin.svg");
+    cursor: pointer;
+    border: none;
+    background-color: #36779E;
+
+}

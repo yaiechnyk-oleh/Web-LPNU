@@ -25,34 +25,120 @@
 // }
 //
 // export default Home
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './home.module.css';
 import {Link} from "react-router-dom";
+import {securedFetch} from "../Login/login";
+
 
 function Home() {
-    const schedule = [
-        {
-            time: "08:30 - 09:50",
-            subjects: {
-                Mon: { name: "Information Theory", teacher: "Dr. Smith", auditory: "101", capacity: "30", group: "A" },
-                Tue: null,
-                Wed: { name: "Information Theory", teacher: "Dr. Smith", auditory: "101", capacity: "30", group: "A" },
-                Thu: null,
-                Fri: { name: "Information Theory", teacher: "Dr. Smith", auditory: "101", capacity: "30", group: "A" }
+    const [queues, setQueues] = useState([]);
+    const [schedule, setSchedule] = useState([])
+
+    useEffect(() => {
+        async function fetchQueues() {
+            try {
+                const token = localStorage.getItem('access_token');
+                const response = await securedFetch('http://localhost:5000/queues', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Request failed: ' + response.statusText);
+                }
+
+                const data = await response.json();
+                setQueues(data);
+            } catch (error) {
+                console.error(error);
             }
-        },
-        {
-            time: "10:30 - 12:00",
-            subjects: {
-                Mon: null,
-                Tue: { name: "Calculus", teacher: "Prof. Johnson", auditory: "202", capacity: "40", group: "B" },
-                Wed: null,
-                Thu: { name: "Calculus", teacher: "Prof. Johnson", auditory: "202", capacity: "40", group: "B" },
-                Fri: null
+        }
+
+        fetchQueues();
+    }, []);
+
+    const processQueueData = (queueData) => {
+        const processedData = {};
+
+        queueData.forEach(queue => {
+            const startTime = new Date(queue.start_time);
+            const endTime = new Date(queue.end_time);
+            const day = startTime.toLocaleString('en-us', { weekday: 'short' });
+
+            const timeSlot = `${startTime.getHours()}:${startTime.getMinutes()} - ${endTime.getHours()}:${endTime.getMinutes()}`;
+
+            if (!processedData[timeSlot]) {
+                processedData[timeSlot] = {
+                    time: timeSlot,
+                    subjects: { Mon: null, Tue: null, Wed: null, Thu: null, Fri: null }
+                };
             }
-        },
-        // ... more time slots
-    ];
+
+            processedData[timeSlot].subjects[day] = {
+                id: queue.id,
+                name: queue.subject_name,
+                teacher: queue.teacher_id,
+                group: queue.group_id,
+            };
+        });
+
+        return Object.values(processedData);
+    };
+
+    useEffect(() => {
+        if (queues.length) {
+            const scheduleData = processQueueData(queues);
+            setSchedule(scheduleData)
+        }
+    }, [queues]);
+
+    // const schedule = [
+    //     {
+    //         time: "08:30 - 09:50",
+    //         subjects: {
+    //             Mon: { name: "Information Theory", teacher: "Dr. Smith", auditory: "101", capacity: "30", group: "A" },
+    //             Tue: null,
+    //             Wed: { name: "Information Theory", teacher: "Dr. Smith", auditory: "101", capacity: "30", group: "A" },
+    //             Thu: null,
+    //             Fri: { name: "Information Theory", teacher: "Dr. Smith", auditory: "101", capacity: "30", group: "A" }
+    //         }
+    //     },
+    //     {
+    //         time: "10:05 - 11:25",
+    //         subjects: {
+    //             Mon: null,
+    //             Tue: { name: "Calculus", teacher: "Prof. Johnson", auditory: "202", capacity: "40", group: "B" },
+    //             Wed: null,
+    //             Thu: { name: "Calculus", teacher: "Prof. Johnson", auditory: "202", capacity: "40", group: "B" },
+    //             Fri: null
+    //         }
+    //     },
+    //     {
+    //         time: "11:40 - 13:00",
+    //         subjects: {
+    //             Mon: null,
+    //             Tue: { name: "Calculus", teacher: "Prof. Johnson", auditory: "202", capacity: "40", group: "B" },
+    //             Wed: null,
+    //             Thu: { name: "Calculus", teacher: "Prof. Johnson", auditory: "202", capacity: "40", group: "B" },
+    //             Fri: null
+    //         }
+    //     },
+    //     {
+    //         time: "13:15 - 14:35",
+    //         subjects: {
+    //             Mon: null,
+    //             Tue: { name: "Calculus", teacher: "Prof. Johnson", auditory: "202", capacity: "40", group: "B" },
+    //             Wed: null,
+    //             Thu: { name: "Calculus", teacher: "Prof. Johnson", auditory: "202", capacity: "40", group: "B" },
+    //             Fri: null
+    //         }
+    //     },
+    //     // ... more time slots
+    // ];
 
     return (
         <div className={styles.scheduleContainer}>
@@ -69,7 +155,7 @@ function Home() {
                     {schedule.map(slot => (
                         <div className={styles.subjectCell} key={`${day}-${slot.time}`}>
                             {slot.subjects[day] ? (
-                                <Link to = "/queue" className={`${styles.queueContainer} ${styles.linkNoUnderline}`}>
+                                <Link to ={`/queue/${slot.subjects[day].id}`} className={`${styles.queueContainer} ${styles.linkNoUnderline}`}>
                                     <div className={styles.queueHeader}>
                                         <p>{slot.subjects[day].name}</p>
                                     </div>
