@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $color-body;
+  color: $color-text;
+  font-family: $font-stack;
+  line-height: 1.6;
+}
+
+.main-queue-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-header, footer {
+  background-color: $color-primary;
+  color: $color-text-secondary;
+  padding: $spacing-base * 2;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-base * 2;
+}
+
+.queue-info, .user-list {
+  width: calc(50% - #{$spacing-base * 2});
+  padding: $spacing-base * 2;
+  border-radius: 1rem;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.queue-info {
+  margin-right: $spacing-base;
+}
+
+.user-list {
+  margin-top: 20px ;
+  margin-bottom: 20px;
+  margin-left: $spacing-base;
+  text-align: center;
+
+  h3 {
+    margin-bottom: $spacing-base;
+    font-size: 1.5rem;
+    color: $color-primary;
+  }
+
+  ol {
+    padding: 0;
+
+    li {
+      background-color: $color-background;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: $spacing-base * 1.5;
+      margin-bottom: $spacing-base;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .join-queue-btn {
+    @include button-style;
+    width: 70%;
+    max-width: 200px;
+    margin: $spacing-base * 2 auto 0;
+    font-size: 1.2rem;
+    display: block;
+  }
+
+  .join-queue-btn::after {
+    content: "→";
+    margin-left: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .queue-info{
+    display: none;
+  }
+
+  .user-list {
+    width: 80%;
+    margin: 0;
+    margin-bottom: $spacing-base * 2;
+  }
+}

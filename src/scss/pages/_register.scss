@@ -1,0 +1,151 @@
+.login-form {
+  width: 500px; // Adjusted width
+  padding: $spacing-base * 2; // Reduced padding
+  background-color: $color-background;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  .login-header {
+    margin-bottom: $spacing-base * 2;
+  }
+
+  .form-field {
+    margin-bottom: $spacing-base; // Reduced space between fields
+
+    label {
+      font-weight: bold;
+      color: $color-text;
+      display: block;
+      text-align: left;
+      margin-bottom: $spacing-base / 2; // Reduced bottom margin
+    }
+
+    input[type="text"],
+    input[type="email"], // Make sure to style email inputs similarly
+    input[type="password"],
+    select {
+      width: 100%;
+      height: 40px; // Reduced height
+      padding: $spacing-base / 2; // Reduced padding
+      background-color: $color-background;
+      border: 1px solid $color-border;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-bottom: $spacing-base / 2; // Reduced bottom margin
+
+      &:focus {
+        border-color: $color-primary;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba($color-primary, 0.3);
+      }
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-base;
+
+    .btn {
+      width: 100%;
+      padding: $spacing-base; // Adjusted padding
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: $color-background;
+      background-color: $color-primary;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($color-primary, 10%);
+      }
+    }
+
+    .forgot-password, .login-redirect {
+      color: $color-text;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-top: $spacing-base / 2; // Reduced margin
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .sign-up-redirect {
+    margin-top: $spacing-base * 2;
+    a {
+      color: $color-primary;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+select {
+  width: 100%;
+  height: 50px;
+  padding: $spacing-base;
+  background-color: $color-background;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  font-size: 1rem;
+  -webkit-appearance: none; // Removes default Chrome and Safari style
+  -moz-appearance: none; // Removes default style Firefox
+  appearance: none; // Removes default style in IE
+
+  &:focus {
+    border-color: $color-primary;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.3);
+  }
+}
+
+.register-btn {
+  @extend .btn; // Extends .btn class styles for consistency
+}
+
+.login-redirect {
+  @extend .sign-up-redirect; // Extends .sign-up-redirect class styles for consistency
+}
+
+@media (max-width: 600px) {
+  .login-form {
+    width: 90%; // Make the form take up most of the screen
+    padding: $spacing-base * 1.5; // Slightly reduce padding
+
+    .form-field {
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      select {
+        height: 35px; // Slightly reduce the height of input fields
+        padding: $spacing-base / 3; // Reduce padding within input fields
+      }
+    }
+
+    .form-actions {
+      .btn {
+        padding: $spacing-base; // Adjust button padding for a better fit
+      }
+
+      .forgot-password, .login-redirect {
+        margin-top: $spacing-base / 3; // Reduce the margin above the links
+      }
+    }
+
+    .login-header,
+    .sign-up-redirect {
+      margin-bottom: $spacing-base; // Tighten up the spacing
+    }
+  }
+}

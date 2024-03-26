@@ -1,0 +1,211 @@
+// Global Styles
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: $font-stack;
+  background-color: $color-body;
+  color: $color-text;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  @include respond-to('medium') {
+    font-size: 14px;
+  }
+}
+
+main{
+  flex: 1;
+}
+
+// Navbar Styles
+.site-header {
+  background-color: $color-primary;
+  color: $color-text-secondary;
+  padding: 1rem 0;
+  .navbar {
+    @include flex-center;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1140px;
+    .nav-link {
+      @include button-style;
+      text-decoration: none;
+      margin: 0 $spacing-base;
+      &:hover {
+        @include hover-effect;
+      }
+    }
+  }
+}
+
+// Main Content Styles
+.main-content {
+  padding: 2rem;
+  .user-management {
+    background: $color-background;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1.5rem rgba($color-text, 0.2);
+    h1 {
+      color: $color-primary;
+    }
+    .btn {
+      @include button-style;
+      &-primary {
+        @include hover-effect;
+      }
+      &-view {
+        @extend .btn;
+        background-color: $color-view;
+        &:hover {
+          background-color: darken($color-view, 10%);
+        }
+      }
+      &-edit {
+        @extend .btn;
+        background-color: $color-success;
+        &:hover {
+          background-color: darken($color-success, 10%);
+        }
+      }
+      &-delete {
+        @extend .btn;
+        background-color: $color-error;
+        &:hover {
+          background-color: darken($color-error, 10%);
+        }
+      }
+    }
+  }
+}
+
+// Table Styles
+.user-list-home {
+  width: 100%;
+  margin-top: $spacing-base;
+  border-collapse: collapse;
+  th {
+    color: #FFFFFF;
+    background-color: darken($color-primary, 10%);
+  }
+  td, th {
+    text-align: left;
+
+    padding: $spacing-base;
+    &:not(:last-child) {
+      border-right: 1px solid lighten($color-primary, 25%);
+    }
+  }
+  tr {
+    &:hover {
+      background-color: lighten($color-primary, 35%);
+    }
+    &:nth-child(even) {
+      background-color: lighten($color-primary, 50%);
+    }
+  }
+}
+
+.burger-menu-button {
+  background: none;
+  border: none;
+  display: none; // Initially hidden, will be displayed in the responsive section
+  font-size: 2.5rem; // Increased size of the burger icon
+  color: white; // Set the color to white
+  cursor: pointer;
+  padding: 0.5rem; // Add some padding for touch friendliness
+  margin-left: auto; // This will push the burger to the right
+
+  &:focus {
+    outline: none; // Removes the default outline on focus
+  }
+
+  // Add some space around the burger icon for easier interaction
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2); // Optional: slight background on hover
+  }
+}
+
+.nav-items {
+  @include flex-center;
+  justify-content: space-between;
+}
+
+
+// Footer Styles
+.site-footer {
+  @include flex-center;
+  background-color: darken($color-primary, 20%);
+  color: white;
+  padding: $spacing-base;
+  p {
+    margin: 0;
+  }
+}
+
+// Responsive Design
+@include respond-to('small') {
+  .navbar {
+    flex-direction: column;
+    .nav-link {
+      padding: 0.5rem;
+    }
+  }
+
+  .burger-menu-button {
+    display: block; // Show the burger menu button
+  }
+
+  .site-header{
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .nav-items {
+    display: none; // Hide navigation items
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%; // Full width for nav items
+
+    .nav-link {
+      display: block;
+      width: 100%;
+      padding: $spacing-base;
+    }
+  }
+
+  // When the burger menu is active
+  .nav-items.active {
+    display: flex;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .user-list-home {
+    thead {
+      th:nth-child(2), // Assuming this is the 'Description' column
+      th:nth-child(3) { // Assuming this is the 'Actions' column
+        display: none;
+      }
+    }
+    tbody {
+      td:nth-child(2), // Hide 'Description' cells on small screens
+      td:nth-child(3) { // Hide 'Actions' cells on small screens
+        display: none;
+      }
+    }
+  }
+
+  .btn {
+    // Adjust button styles if needed
+  }
+}

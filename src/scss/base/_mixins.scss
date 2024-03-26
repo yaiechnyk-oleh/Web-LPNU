@@ -1,0 +1,63 @@
+// Mixins
+@mixin button-style {
+  display: inline-block;
+  background-color: $color-primary;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
+  &:hover {
+    @include hover-effect;
+  }
+}
+
+@mixin form-field-style {
+  display: block;
+  margin-bottom: $spacing-base;
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    &:focus {
+      border-color: $color-primary;
+      outline: none;
+      box-shadow: 0 0 0 0.2rem rgba($color-primary, 0.25);
+    }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'small' {
+    @media (max-width: 640px) { @content; }
+  } @else if $breakpoint == 'medium' {
+    @media (max-width: 768px) { @content; }
+  } @else if $breakpoint == 'large' {
+    @media (max-width: 1024px) { @content; }
+  }
+}
+
+@mixin hover-effect {
+  transition: transform 0.2s, box-shadow 0.2s;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../../dist/css/main.css"> <!-- Update path as needed -->
+</head>
+<body>
+<main class="login-container">
+    <form class="login-form" action="/path/to/register" method="POST">
+        <div class="login-header">
+            <h2>Create Your Account</h2>
+        </div>
+        <div class="form-field">
+            <label for="username"><i class="fas fa-user"></i> Username:</label>
+            <input type="text" id="username" name="username" required placeholder="Choose a username">
+        </div>
+        <div class="form-field">
+            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+        </div>
+        <div class="form-field">
+            <label for="password"><i class="fas fa-lock"></i> Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Create a password">
+        </div>
+        <div class="form-field">
+            <label for="confirm-password"><i class="fas fa-lock"></i> Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
+        </div>
+        <div class="form-field">
+            <label for="role"><i class="fas fa-user-tag"></i> I am a:</label>
+            <select id="role" name="role" required>
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn register-btn">Register</button>
+        </div>
+        <div class="login-redirect">
+            Already have an account? <a href="login.html">Login</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>
