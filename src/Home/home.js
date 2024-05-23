@@ -1,30 +1,3 @@
-// import styles from './home.module.css'
-//
-// function Home(){
-//     return(
-//         <div className = {styles.homeWrapper}>
-//             <div className = {styles.time}>
-//                 <div className = {styles.timeTitleContainer}>
-//                     <p className={styles.timeText}>Time</p>
-//                 </div>
-//                 <div className = {styles.daysContainer}>
-//                 <p className={styles.timeText}>Mon</p>
-//                 <p className={styles.timeText}>Tue</p>
-//                 <p className={styles.timeText}>Wed</p>
-//                 <p className={styles.timeText}>Thu</p>
-//                 <p className={styles.timeText}>Fri</p>
-//                 </div>
-//             </div>
-//             <div>
-//                 <div>
-//
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
-//
-// export default Home
 import React, {useEffect, useState} from 'react';
 import styles from './home.module.css';
 import {Link} from "react-router-dom";
@@ -34,6 +7,11 @@ import {securedFetch} from "../Login/login";
 function Home() {
     const [queues, setQueues] = useState([]);
     const [schedule, setSchedule] = useState([])
+
+    function convertToMinutes(timeString) {
+        const [hours, minutes] = timeString.split(":").map(Number);
+        return hours * 60 + minutes;
+    }
 
     useEffect(() => {
         async function fetchQueues() {
@@ -84,9 +62,22 @@ function Home() {
                 teacher: queue.teacher_id,
                 group: queue.group_id,
             };
+
+
         });
 
-        return Object.values(processedData);
+        const sortedData = Object.values(processedData).sort((a, b) => {
+            // Splitting the time string and converting it to minutes for comparison
+            const timeA = a.time.split(" - ");
+            const timeB = b.time.split(" - ");
+            const startTimeA = convertToMinutes(timeA[0]);
+            const startTimeB = convertToMinutes(timeB[0]);
+
+            // Comparing start times
+            return startTimeA - startTimeB;
+        });
+
+        return sortedData;
     };
 
     useEffect(() => {
@@ -139,7 +130,7 @@ function Home() {
     //     },
     //     // ... more time slots
     // ];
-
+    console.log(schedule)
     return (
         <div className={styles.scheduleContainer}>
             <div className={styles.timeColumn}>
