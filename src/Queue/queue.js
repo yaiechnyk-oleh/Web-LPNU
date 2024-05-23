@@ -9,6 +9,7 @@ function Queue() {
     const [queueDetails, setQueueDetails] = useState([])
 
     useEffect(() => {
+
         async function fetchQueueDetails() {
             const response = await securedFetch(`http://localhost:5000/queues/${queueId}`, {
                 headers: {},
@@ -16,13 +17,26 @@ function Queue() {
 
             if (response.ok) {
                 const data = await response.json();
+
+                const s_dateTime = new Date(data.start_time);
+                const s_hours = s_dateTime.getHours().toString().padStart(2, "0"); // Ensure two digits, padding with leading zeros if necessary
+                const s_minutes = s_dateTime.getMinutes().toString().padStart(2, "0"); // Same for minutes
+// Format into "hh:mm"
+                const startTime = `${s_hours}:${s_minutes}`;
+
+                const e_dateTime = new Date(data.end_time);
+                const e_hours = e_dateTime.getHours().toString().padStart(2, "0"); // Ensure two digits, padding with leading zeros if necessary
+                const e_minutes = e_dateTime.getMinutes().toString().padStart(2, "0"); // Same for minutes
+// Format into "hh:mm"
+                const endTime = `${e_hours}:${e_minutes}`;
+
                 setQueueDetails({
                     id: data.id,
                     name: data.subject_name,
                     teacher: data.teacher_id,
                     group: data.group_id,
-                    start_time: data.start_time,
-                    end_time: data.end_time,
+                    start_time: startTime,
+                    end_time: endTime,
                 });
             } else {
                 console.error("Failed to fetch queue details");
@@ -43,7 +57,7 @@ function Queue() {
             {id: 5, user_name: "Myrosh Andriy"},
             {id: 6, user_name: "Myrosh Andriy"},
             {id: 7, user_name: "Myrosh Andriy"},
-           ];
+        ];
 
     const otherQueues = [
         {teacherName: "Aboba", date: "2023.12.12", capacity: 1000, queue_id: 1},
@@ -63,9 +77,9 @@ function Queue() {
                     <div className = {styles.queueInfoSettings}>
                         <p>Settings</p>
                         <div className = {styles.infoTemplate}>Subject name: {queueDetails.name}</div>
-                        <div className = {styles.infoTemplate}>Time: {queueDetails.start_time}-{queueDetails.end_time}</div>
+                        <div className = {styles.infoTemplate}>Time: {`${queueDetails.start_time} - ${queueDetails.end_time}`}</div>
                         <div className = {styles.infoTemplate}>Location: 125 I a.b.</div>
-                        <div className = {styles.infoTemplate}>Group: {queueDetails.group}</div>
+                        <div className = {styles.infoTemplate}>Group: SHI-24</div>
                     </div>
                 )}
                 <div className = {styles.queueDescription}>
